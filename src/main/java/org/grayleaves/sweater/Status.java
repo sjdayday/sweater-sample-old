@@ -3,12 +3,12 @@ package org.grayleaves.sweater;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-@Path("/hello")
-public class HelloRest {
+@Path("/status")
+public class Status {
 
 	@GET
 	public String message() {
-		return "Hello, resting!!!"; 
+		return "Sweater sample"; 
 	}
 	
 }
