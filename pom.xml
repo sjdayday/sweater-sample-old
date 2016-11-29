@@ -60,7 +60,23 @@
           <target>1.7</target>
         </configuration>
       </plugin>
-    </plugins>
+      <!-- http://www.avajava.com/tutorials/lessons/how-do-i-deploy-a-maven-web-application-to-tomcat.html  -->
+<!-- 				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<url>http://localhost:8080/manager</url> -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<server>eclipseTomcat</server>
+					<path>/sweater-sample</path>
+				</configuration>
+			</plugin>    
+			
+		</plugins>
   </build>
   <name>sweater-sample</name>
 </project>

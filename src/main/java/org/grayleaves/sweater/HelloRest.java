@@ -8,7 +8,7 @@ public class HelloRest {
 
 	@GET
 	public String message() {
-		return "Hello, rest!"; 
+		return "Hello, resting!!!"; 
 	}
 	
 }
