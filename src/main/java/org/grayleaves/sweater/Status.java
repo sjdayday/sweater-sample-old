@@ -11,8 +11,8 @@ public class Status {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public DetailedStatus message() {
-		return new DetailedStatus(); 
+	public StatusDetail message() {
+		return new StatusDetail(); 
 	}
 	
 }
