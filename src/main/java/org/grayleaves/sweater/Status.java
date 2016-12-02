@@ -11,8 +11,10 @@ public class Status {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public StatusDetail message() {
-		return new StatusDetail(); 
+	public StatusResponse statusMessage() {
+		StatusResponse statusResponse = new StatusResponse();
+		statusResponse.delay(); 
+		return statusResponse; 
 	}
 	
 }

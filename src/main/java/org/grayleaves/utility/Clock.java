@@ -12,7 +12,7 @@ public class Clock
 {
     private static Calendar CALENDAR; 
     private static boolean CLOCK_SET = false;  
-    
+
     public static void setDateForTesting(String dateString)
     {
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
@@ -33,7 +33,7 @@ public class Clock
     }
     public static String getFormattedDateString()
     {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ssaa");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss.SSSaa");
         return format.format(getCalendar().getTime());
     }
     public static Calendar getCalendar() 
@@ -59,5 +59,29 @@ public class Clock
 			} 
         }
 		
+	}
+	private long startTime = 0;
+	private long endTime = 0;
+	private long elapsedTime = 0;
+	private boolean started;
+	public Clock() {
+		started = false; 
+	}
+	public void start() {
+		startTime = getCalendar().getTimeInMillis();
+		started = true; 
+	}
+	public long stop() {
+		if (started) {
+			endTime = getCalendar().getTimeInMillis(); 
+			elapsedTime = endTime - startTime;
+		} 
+		else {
+			elapsedTime = 0; 
+		}
+		return elapsedTime;
+	}
+	public long getElapsedTime() {
+		return elapsedTime;
 	}
 }
