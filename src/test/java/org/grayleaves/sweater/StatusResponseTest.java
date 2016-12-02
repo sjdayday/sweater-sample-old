@@ -15,6 +15,7 @@ public class StatusResponseTest {
 	public void setUp()
     {
         Clock.resetClock();
+        StatusResponse.forceDelay(0); 
     }
 	@Test
 	public void defaultsToNameWithNoDelay() {
@@ -37,6 +38,15 @@ public class StatusResponseTest {
 		status = new StatusResponse(); 
 		status.delay();
 		assertEquals(20, status.getElapsedTime()); 
+		assertEquals(20, status.getDelay()); 
+	}
+	@Test
+	public void hangRequestEquivalentToMaxDelay() throws Exception {
+		StatusResponse.hang(true); 
+		Clock.setDateForTesting("10/15/2005 12:00:14 PM");
+		status = new StatusResponse(); 
+		status.delay();
+		assertEquals(Integer.MAX_VALUE, status.getElapsedTime()); 
 	}
 	@After
 	public void tearDown()
