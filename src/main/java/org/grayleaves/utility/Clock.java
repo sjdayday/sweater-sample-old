@@ -27,7 +27,7 @@ public class Clock
         CALENDAR.setTime(date); 
         CLOCK_SET = true;
     }
-    public static void resetClock()
+    public static void reset()
     {
         CLOCK_SET = false;
     }

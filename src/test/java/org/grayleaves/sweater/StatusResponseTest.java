@@ -14,7 +14,7 @@ public class StatusResponseTest {
 	@Before
 	public void setUp()
     {
-        Clock.resetClock();
+        Clock.reset();
         StatusResponse.forceDelay(0); 
     }
 	@Test
@@ -51,6 +51,6 @@ public class StatusResponseTest {
 	@After
 	public void tearDown()
 	{
-		Clock.resetClock();
+		Clock.reset();
 	}
 }

@@ -20,7 +20,7 @@ public class ClockTest
 	@Before
 	public void setUp()
     {
-        Clock.resetClock();
+        Clock.reset();
     }
 	@Test
 	public void defaultsToCurrentDate() throws Exception {
@@ -78,6 +78,6 @@ public class ClockTest
 	@After
 	public void tearDown()
 	{
-		Clock.resetClock();
+		Clock.reset();
 	}
 }
