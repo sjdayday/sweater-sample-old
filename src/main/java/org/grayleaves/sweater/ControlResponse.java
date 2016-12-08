@@ -24,8 +24,12 @@ public class ControlResponse {
 		this.command = command;
 	}
 	public void setHang(boolean hang) {
-		StatusResponse.hang(hang); 
-		setCommand("setHang");
+		StatusResponse.hang(hang);
+		if (hang) {
+			setCommand("setHang");
+		} else {
+			StatusResponse.forceDelay(globalDelay); 
+		}
 		this.hang = hang;
 	}
 	public boolean isHang() {
