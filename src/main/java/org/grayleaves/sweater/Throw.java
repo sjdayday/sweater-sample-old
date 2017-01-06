@@ -6,14 +6,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/hang")
-public class Hang {
+@Path("/throw")
+public class Throw {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ControlResponse control() {
 		ControlResponse response = new ControlResponse(); 
-		response.setHang(true);
+		response.setThrowException(true);
 		return  response; 
 	}
 	

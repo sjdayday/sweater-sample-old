@@ -16,12 +16,14 @@ public class StatusResponseTest {
     {
         Clock.reset();
         StatusResponse.forceDelay(0); 
+        StatusResponse.throwExceptions(false); 
     }
 	@Test
-	public void defaultsToNameWithNoDelay() {
+	public void defaultsToNormalResponseWithNameAndNoDelay() {
 		status = new StatusResponse(); 
 		assertEquals(0, status.getDelay());
 		assertEquals("sweater-sample", status.getName());
+		assertEquals("normal", status.getResponse());
 	}
 	@Test
 	public void calculatesElapsedTime() throws Exception {
@@ -47,6 +49,12 @@ public class StatusResponseTest {
 		status = new StatusResponse(); 
 		status.delay();
 		assertEquals(Integer.MAX_VALUE, status.getElapsedTime()); 
+	}
+	@Test
+	public void responseBeginsThrowingExceptions() throws Exception {
+		StatusResponse.throwExceptions(true); 
+		status = new StatusResponse(); 
+		assertEquals("exception: oops!", status.getResponse());
 	}
 	@After
 	public void tearDown()

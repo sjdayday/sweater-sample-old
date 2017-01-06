@@ -24,14 +24,16 @@ public class StatusTest extends JerseyTest {
 		Clock.setDateForTesting("10/15/2005 12:00:14 PM");
 		StatusResponse.forceDelay(0); 
 		StatusResponse.hang(false); 
+		StatusResponse.throwExceptions(false); 
 	}
 	
 	@Test
 	public void statusReturnsDefaultStatusResponse() {
 		StatusResponse statusResponse = target("status").request().get(StatusResponse.class);  
-		assertEquals("sweater-sample", statusResponse.getName()); 
+		assertEquals(StatusResponse.NAME, statusResponse.getName()); 
 		assertEquals(0, statusResponse.getDelay()); 
 		assertEquals(0, statusResponse.getElapsedTime()); 
+		assertEquals(StatusResponse.NORMAL, statusResponse.getResponse()); 
 	}
 	@Test
 	public void delayCausesStatusToReturnAfterSetDelay() {
@@ -58,6 +60,14 @@ public class StatusTest extends JerseyTest {
 		assertEquals(Integer.MAX_VALUE, statusResponse.getDelay()); 
 		assertEquals(Integer.MAX_VALUE, statusResponse.getElapsedTime()); 
 	}
+	@Test
+	public void throwCausesStatusToReturnExceptionResponse() {
+		ControlResponse controlResponse = target("throw").request().get(ControlResponse.class);  
+		assertEquals("setThrowExceptions", controlResponse.getCommand()); 
+		assertTrue(controlResponse.isThrowException()); 
+		StatusResponse statusResponse = target("status").request().get(StatusResponse.class);  
+		assertEquals(StatusResponse.EXCEPTION, statusResponse.getResponse()); 
+	}
 	@Override
 	@After
 	public void tearDown() throws Exception {
@@ -65,6 +75,7 @@ public class StatusTest extends JerseyTest {
 		Clock.reset(); 
 		StatusResponse.forceDelay(0); 
 		StatusResponse.hang(false); 
+		StatusResponse.throwExceptions(false); 
 	}
 	
 	

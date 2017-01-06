@@ -4,7 +4,7 @@ public class ControlResponse {
 
 	private String command = ""; 
 	private int globalDelay;
-	private boolean hang; 
+//	private boolean hang; 
 	
 	public ControlResponse() {
 	}
@@ -30,9 +30,20 @@ public class ControlResponse {
 		} else {
 			StatusResponse.forceDelay(globalDelay); 
 		}
-		this.hang = hang;
+//		this.hang = hang;
 	}
 	public boolean isHang() {
 		return StatusResponse.HANG; 
+	}
+
+	public boolean isThrowException() {
+		return StatusResponse.THROW_EXCEPTIONS;
+	}
+
+	public void setThrowException(boolean exceptions) {
+		StatusResponse.throwExceptions(exceptions); 
+		if (exceptions) {
+			setCommand("setThrowExceptions"); 
+		}
 	}
 }
